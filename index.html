@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SGC - Skill Growth Centre</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #0f172a;
+            --card-bg: #f8fafc;
+            --border-color: #e2e8f0;
+            --accent-color: #7c3aed;
+            --marquee-bg: #7c3aed;
+        }
+
+        body.dark-mode {
+            --bg-color: #050507;
+            --text-color: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --accent-color: #a78bfa;
+            --marquee-bg: #1e1b4b;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: all 0.4s ease;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Marquee */
+        .marquee-wrapper {
+            background-color: var(--marquee-bg);
+            color: white;
+            padding: 15px 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 35s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .marquee-item {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin: 0 25px;
+            text-transform: uppercase;
+        }
+
+        /* Skills */
+        .skill-bar-container {
+            height: 8px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 10px;
+            margin-top: 5px;
+        }
+        body.dark-mode .skill-bar-container { background: rgba(255,255,255,0.1); }
+
+        .skill-fill {
+            height: 100%;
+            border-radius: 10px;
+            background: var(--accent-color);
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        #theme-toggle-btn {
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+        }
+
+        .location-img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <nav class="flex justify-between items-center px-6 md:px-16 py-6 sticky top-0 bg-white/80 dark:bg-black/50 backdrop-blur-md z-50 border-b var(--border-color)">
+        <div class="text-2xl font-black tracking-tighter">SGC<span class="text-purple-600">.</span></div>
+        <div class="flex items-center gap-4">
+            <button id="theme-toggle-btn">
+                <i id="theme-icon" class="fas fa-moon"></i>
+            </button>
+            <a href="https://wa.me/923478068173" class="bg-purple-600 text-white px-5 py-2 rounded-full font-bold text-sm">Let's Talk</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="px-6 md:px-16 pt-20 pb-10 text-center max-w-5xl mx-auto">
+        <h1 class="text-4xl md:text-7xl font-extrabold leading-tight mb-6">Master Skills, Grow Your <span class="text-purple-600">Future</span></h1>
+        <p class="text-lg opacity-70 mb-10">Agency and Training Center in Bahawalpur. Learn from industry leaders Muhammad Hasnain, Ahmad Raza, and Muhammad Hasnat.</p>
+        <div class="flex justify-center gap-4">
+            <a href="https://wa.me/923478068173" class="bg-purple-600 text-white px-10 py-4 rounded-2xl font-bold">Start Learning</a>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-wrapper">
+        <div class="marquee-content">
+            <span class="marquee-item">Growth</span> <span class="marquee-item">Learn</span>
+            <span class="marquee-item">Work</span> <span class="marquee-item">Earn</span>
+            <span class="marquee-item">Build</span> <span class="marquee-item">Improve</span>
+            <span class="marquee-item">Progress</span> <span class="marquee-item">Develop</span>
+            <span class="marquee-item">Create</span> <span class="marquee-item">Achieve</span>
+            <span class="marquee-item">Succeed</span> <span class="marquee-item">Innovate</span>
+            <!-- Loop duplicate -->
+            <span class="marquee-item">Growth</span> <span class="marquee-item">Learn</span>
+            <span class="marquee-item">Work</span> <span class="marquee-item">Earn</span>
+            <span class="marquee-item">Build</span> <span class="marquee-item">Improve</span>
+            <span class="marquee-item">Progress</span> <span class="marquee-item">Develop</span>
+            <span class="marquee-item">Create</span> <span class="marquee-item">Achieve</span>
+            <span class="marquee-item">Succeed</span> <span class="marquee-item">Innovate</span>
+        </div>
+    </div>
+
+    <!-- Team Section -->
+    <section class="px-6 md:px-16 py-12">
+        <h2 class="text-3xl font-bold mb-10">Our Experts</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Muhammad Hasnain -->
+            <div class="glass-card p-8 rounded-[2rem]">
+                <i class="fas fa-crown text-purple-600 text-3xl mb-4"></i>
+                <h3 class="text-xl font-bold">Muhammad Hasnain</h3>
+                <p class="text-purple-600 text-xs font-bold mb-6">CEO & TIKTOK EXPERT</p>
+                <div class="space-y-4">
+                    <div><div class="flex justify-between text-xs"><span>Social Media</span><span>90.9%</span></div><div class="skill-bar-container"><div class="skill-fill" style="width: 90.9%"></div></div></div>
+                    <div><div class="flex justify-between text-xs"><span>TikTok Marketing</span><span>98.5%</span></div><div class="skill-bar-container"><div class="skill-fill" style="width: 98.5%"></div></div></div>
+                    <div><div class="flex justify-between text-xs"><span>Prompt Engineering</span><span>99.9%</span></div><div class="skill-bar-container"><div class="skill-fill" style="width: 99.9%"></div></div></div>
+                </div>
+            </div>
+            <!-- Ahmad Raza -->
+            <div class="glass-card p-8 rounded-[2rem]">
+                <i class="fas fa-palette text-blue-500 text-3xl mb-4"></i>
+                <h3 class="text-xl font-bold">Ahmad Raza</h3>
+                <p class="text-blue-500 text-xs font-bold mb-6">DIRECTOR & SEO</p>
+                <div class="space-y-4">
+                    <div><div class="flex justify-between text-xs"><span>Graphics Design</span><span>94.9%</span></div><div class="skill-bar-container"><div class="skill-fill" style="width: 94.9%"></div></div></div>
+                    <div><div class="flex justify-between text-xs"><span>SEO Expert</span><span>91%</span></div><div class="skill-bar-container"><div class="skill-fill" style="width: 91%"></div></div></div>
+                    <div><div class="flex justify-between text-xs"><span>YouTube Marketing</span><span>97%</span></div><div class="skill-bar-container"><div class="skill-fill" style="width: 97%"></div></div></div>
+                </div>
+            </div>
+            <!-- Muhammad Hasnat -->
+            <div class="glass-card p-8 rounded-[2rem]">
+                <i class="fas fa-clapperboard text-pink-500 text-3xl mb-4"></i>
+                <h3 class="text-xl font-bold">Muhammad Hasnat</h3>
+                <p class="text-pink-500 text-xs font-bold mb-6">ADMIN MANAGER</p>
+                <div class="space-y-4">
+                    <div><div class="flex justify-between text-xs"><span>Video Editing</span><span>94.6%</span></div><div class="skill-bar-container"><div class="skill-fill" style="width: 94.6%"></div></div></div>
+                    <div><div class="flex justify-between text-xs"><span>AI Automation</span><span>97.9%</span></div><div class="skill-bar-container"><div class="skill-fill" style="width: 97.9%"></div></div></div>
+                    <div><div class="flex justify-between text-xs"><span>Facebook Marketing</span><span>91.3%</span></div><div class="skill-bar-container"><div class="skill-fill" style="width: 91.3%"></div></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TikTok Branding Section -->
+    <section class="mx-6 md:mx-16 my-16 p-12 md:p-24 rounded-[3rem] bg-black text-white text-center">
+        <i class="fab fa-tiktok text-7xl mb-6 text-[#25f4ee]"></i>
+        <h2 class="text-4xl font-black mb-8">Follow Our TikTok Journey</h2>
+        <a href="https://www.tiktok.com/@skill.growth.centre" class="bg-white text-black px-12 py-5 rounded-full font-bold flex items-center justify-center gap-3 w-max mx-auto hover:bg-[#fe2c55] hover:text-white transition-all">
+            <i class="fab fa-tiktok"></i> VISIT TIKTOK NOW
+        </a>
+    </section>
+
+    <!-- Location Section (NEW) -->
+    <section class="px-6 md:px-16 py-16">
+        <h2 class="text-3xl font-bold mb-10 text-center md:text-left">Our Location in Bahawalpur</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <!-- Office/Bahawalpur Pic -->
+            <div>
+                <!-- Yahan aap apni real office ki building ki picture ka link bhi lga sakty hain -->
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200" class="location-img" alt="SGC Bahawalpur Location">
+                <div class="mt-4 p-4 glass-card rounded-2xl">
+                    <p class="font-bold text-sm uppercase text-purple-600 mb-1">Office Address</p>
+                    <p class="opacity-70 text-sm">1st Floor Alnoor Plaza, Near City Park Main Road, Bahawalpur, Pakistan.</p>
+                </div>
+            </div>
+            <!-- Live Google Map -->
+            <div class="rounded-[2.5rem] overflow-hidden shadow-2xl h-[450px]">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3476.5414605151574!2d71.688849475459!3d29.38382025016254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393b9090623351d3%3A0x6a165b55050f22f7!2sBahawalpur%2C%20Punjab%2C%20Pakistan!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="px-6 md:px-16 py-16 bg-black/5">
+        <h2 class="text-3xl font-bold mb-12 text-center">Student Success</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass-card p-8 rounded-3xl">
+                <p class="italic opacity-70 mb-8">"Hasnain sir ki guidance se mere TikTok account ne bohat jaldi grow kiya. Best agency in Bahawalpur."</p>
+                <div class="flex items-center gap-4">
+                    <img src="https://xsgames.co/randomusers/assets/avatars/male/4.jpg" class="w-12 h-12 rounded-full shadow-lg" alt="Student">
+                    <div><h4 class="font-bold">Hamza Ahmed</h4><p class="text-xs opacity-50">Student</p></div>
+                </div>
+            </div>
+            <div class="glass-card p-8 rounded-3xl">
+                <p class="italic opacity-70 mb-8">"Graphics designing seekh kar ab main freelance projects kar raha houn. Ahmad Raza sir is a genius."</p>
+                <div class="flex items-center gap-4">
+                    <img src="https://xsgames.co/randomusers/assets/avatars/male/22.jpg" class="w-12 h-12 rounded-full shadow-lg" alt="Student">
+                    <div><h4 class="font-bold">Zeeshan Malik</h4><p class="text-xs opacity-50">Freelancer</p></div>
+                </div>
+            </div>
+            <div class="glass-card p-8 rounded-3xl">
+                <p class="italic opacity-70 mb-8">"Hasnat sir ne AI automation aur video editing itni asani se sikhai ke sab samajh aa gaya."</p>
+                <div class="flex items-center gap-4">
+                    <img src="https://xsgames.co/randomusers/assets/avatars/male/15.jpg" class="w-12 h-12 rounded-full shadow-lg" alt="Student">
+                    <div><h4 class="font-bold">Bilal Khan</h4><p class="text-xs opacity-50">Content Creator</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="px-6 md:px-16 py-16 border-t var(--border-color)">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div class="md:col-span-2">
+                <div class="text-2xl font-black mb-6">SGC.</div>
+                <p class="max-w-xs opacity-60">Bahawalpur's fastest growing digital agency and training hub.</p>
+                <div class="mt-8 flex gap-6 text-2xl">
+                    <a href="https://wa.me/923478068173" class="text-green-500"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.tiktok.com/@skill.growth.centre" class="opacity-80"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="bg-white p-3 rounded-2xl shadow-xl">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://www.tiktok.com/@skill.growth.centre" class="w-28 h-28" alt="QR Code">
+                </div>
+                <span class="text-[10px] mt-3 uppercase tracking-widest opacity-50">Scan for TikTok</span>
+            </div>
+            <div class="text-center md:text-right">
+                <h4 class="font-bold mb-4">Contact Info</h4>
+                <p class="text-sm opacity-60">+92 347 8068173</p>
+                <p class="text-sm opacity-60 mt-2">designed and managed by wasi studios partner of SGC for contact or order feel free to contact +994401879953 whatsapp</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/923478068173" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Theme Script -->
+    <script>
+        const themeBtn = document.getElementById('theme-toggle-btn');
+        const themeIcon = document.getElementById('theme-icon');
+        const body = document.body;
+
+        themeBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if(body.classList.contains('dark-mode')) {
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+    </script>
+
+</body>
+</html>
